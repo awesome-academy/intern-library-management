@@ -1,0 +1,9 @@
+<% if @status == :success %>
+  toastr.success('<%= t 'categories.message.sucsses'%>')
+  $('.test').append('<%= j render 'category', category: @category %>')
+  var category_counter;
+  category_counter = parseInt($('table tr:last td:first').html()) + 1;
+  parseInt($('table tr:last td:first').html(category_counter));
+<% else %>
+  toastr.error('<%= t 'categories.message.failer'%>')
+<% end %>
