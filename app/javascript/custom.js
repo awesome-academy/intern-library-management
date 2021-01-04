@@ -5,8 +5,16 @@ $(window).on('turbolinks:load', function() {
       'bPaginate': false
     });
   });
+
   $(document).ready(function(){
     $('#category').DataTable({
+      "bInfo": false,
+      'bPaginate': false
+    });
+  });
+
+  $(document).ready(function(){
+    $('#author').DataTable({
       "bInfo": false,
       'bPaginate': false
     });
