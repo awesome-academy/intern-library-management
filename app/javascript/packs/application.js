@@ -10,10 +10,11 @@ require('channels')
 var jQuery = require('jquery');
 global.$ = global.jQuery = jQuery;
 window.$ = window.jQuery = jQuery;
+import 'owl.carousel2/dist/assets/owl.carousel.css';
+import 'owl.carousel2'
 require('bootstrap');
 require('admin-lte');
 require('datatables.net-bs4');
-import $ from 'jquery';
 global.$ = jQuery;
 global.toastr = require('toastr');
 import "cocoon-js";

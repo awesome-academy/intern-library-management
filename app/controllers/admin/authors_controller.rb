@@ -15,6 +15,6 @@ class Admin::AuthorsController < Admin::BaseController
   private
 
   def author_params
-    params.require(:author).permit AUTHOR::AUTHOR_PARAMS
+    params.require(:author).permit Author::AUTHOR_PARAMS
   end
 end

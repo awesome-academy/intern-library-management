@@ -19,4 +19,8 @@ $(window).on('turbolinks:load', function() {
       'bPaginate': false
     });
   });
+
+  $(document).ready(function(){
+    $('.owl-carousel').owlCarousel();
+  });
 })
