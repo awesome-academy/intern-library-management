@@ -10,8 +10,12 @@ Rails.application.routes.draw do
         resources :books, except: %i(new create)
       end
       resources :authors
+      resources :borrowings, only: :update
     end
-    resources :books, only: :show
+    resources :books, only: :show do
+      resources :comments, only: %i(create destroy)
+      resources :ratings, only: %i(create update)
+    end
     resources :borrow_items, only: %i(create index destroy)
     resources :borrowings, only: %i(index create)
 
@@ -20,5 +24,7 @@ Rails.application.routes.draw do
     get "/login", to: "sessions#new"
     post "/login", to: "sessions#create"
     delete "/logout", to: "sessions#destroy"
+    get "/list_append", to: "admin/borrowings#pending"
+    get "/list_paying", to: "admin/borrowings#paying"
   end
 end

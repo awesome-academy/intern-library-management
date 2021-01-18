@@ -14,7 +14,8 @@ class Book < ApplicationRecord
   has_many :images, dependent: :destroy
   has_many :borrow_items, dependent: :destroy
   has_many :borrowings, through: :borrow_items
-
+  has_many :comments, dependent: :destroy
+  has_many :ratings, dependent: :destroy
   accepts_nested_attributes_for :images, reject_if: :all_blank,
     allow_destroy: true
 
@@ -29,5 +30,5 @@ class Book < ApplicationRecord
 
   delegate :title, to: :category, prefix: true, allow_nil: true
 
-  scope :by_ids, ->(ids){where id: ids if ids.present?}
+  scope :by_ids, ->(ids){where id: ids}
 end
