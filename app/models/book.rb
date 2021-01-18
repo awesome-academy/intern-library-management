@@ -29,5 +29,11 @@ class Book < ApplicationRecord
 
   delegate :title, to: :category, prefix: true, allow_nil: true
 
-  scope :by_ids, ->(ids){where id: ids if ids.present?}
+  scope :by_ids, ->(ids){where id: ids}
+  scope :search_by_name, (lambda do |name|
+    where "name LIKE ?", "%#{name}%" if name.present?
+  end)
+  scope :filter_book_by_publisher, (lambda do |author_id|
+    where "author_id = ?", "#{author_id}" if author_id.present?
+  end)
 end

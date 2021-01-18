@@ -10,15 +10,20 @@ Rails.application.routes.draw do
         resources :books, except: %i(new create)
       end
       resources :authors
+      resources :borrowings, only: :update
     end
-    resources :books, only: :show
+    resources :books, only: %i(show index)
     resources :borrow_items, only: %i(create index destroy)
     resources :borrowings, only: %i(index create)
+    resources :publishers, only: :show
 
     root "homepages#home"
 
     get "/login", to: "sessions#new"
     post "/login", to: "sessions#create"
     delete "/logout", to: "sessions#destroy"
+    get "/list_append", to: "admin/borrowings#pending"
+    get "/list_paying", to: "admin/borrowings#paying"
+    get "/search", to: "search#index"
   end
 end
