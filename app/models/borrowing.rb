@@ -37,10 +37,6 @@ class Borrowing < ApplicationRecord
     BorrowingMailer.new_borrowing(self).deliver_later
   end
 
-  def borrowing_cancel
-    BorrowingMailer.cancel_borrowing(self).deliver_later
-  end
-
   class << self
     def ransackable_attributes auth_object = nil
       if auth_object == :admin

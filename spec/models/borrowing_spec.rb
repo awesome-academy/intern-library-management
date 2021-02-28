@@ -73,16 +73,6 @@ RSpec.describe Borrowing, type: :model do
     end
   end
 
-  describe ".borrowing_cancel" do
-    it "return ActionMailer when cancel borrowing" do
-      expect(borrowing_two.borrowing_cancel.class).to eq ActionMailer::MailDeliveryJob
-    end
-
-    it "return object haved to cancel" do
-      expect(borrowing_two.borrowing_cancel.arguments.last[:args]).to eq [borrowing_two]
-    end
-  end
-
   describe ".generate_borrow_code" do
     let(:borrowing) {FactoryBot.create(:borrowing)}
 

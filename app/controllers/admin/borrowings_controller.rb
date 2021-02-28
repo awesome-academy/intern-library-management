@@ -10,7 +10,8 @@ class Admin::BorrowingsController < Admin::BaseController
 
   def update
     if @borrowing.pending?
-      @borrowing.accept_borrowing
+      BorrowingWorker.set(wait: Settings.sidekiq.time.minutes)
+                     .perform_async @borrowing
       @borrowing.accept!
     else
       @borrowing.payed!
@@ -20,7 +21,8 @@ class Admin::BorrowingsController < Admin::BaseController
 
   def destroy
     @success = @borrowing.cancel!
-    @borrowing.borrowing_cancel
+    CancelBorrowingWorker.set(wait: Settings.sidekiq.time.minutes)
+                         .perform_async @borrowing
     respond_to :js
   end
 
