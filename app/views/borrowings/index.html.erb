@@ -31,7 +31,9 @@
                 </tr>
               </thead>
               <tbody>
-                <%= render @borrowings %>
+                <% if cannot? :read, @borrowings %>
+                  <%= render @borrowings %>
+                <% end %>
               </tbody>
             </table>
           </div>
