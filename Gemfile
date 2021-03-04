@@ -27,6 +27,7 @@ gem "omniauth", "1.9.1"
 gem "omniauth-google-oauth2"
 gem "omniauth-facebook"
 gem "cancancan"
+gem "sidekiq"
 
 group :development, :test do
   gem "pry-rails"
